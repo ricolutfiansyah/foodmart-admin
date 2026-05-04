@@ -1,73 +1,72 @@
-# React + TypeScript + Vite
+# FoodMart Admin
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Admin panel untuk platform e-commerce FoodMart.
+Dibangun dengan React + Vite + TypeScript.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React + Vite** — build tool & framework
+- **TypeScript** — static typing
+- **React Router v6** — routing
+- **TanStack Query v5** — server state & data fetching
+- **Zustand** — client state management (auth)
+- **Axios** — HTTP client + interceptor
+- **shadcn/ui + Tailwind CSS** — UI components & styling
+- **React Hook Form + Zod** — form handling & validasi
 
-## React Compiler
+## Requirements
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 18+
+- Backend [foodmart-api](https://github.com/ricolutfiansyah/foodmart-api) running
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+\`\`\`bash
+# Clone repo
+git clone https://github.com/ricolutfiansyah/foodmart-admin.git
+cd foodmart-admin
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Setup environment variables
+cp .env.example .env
+# Edit .env sesuai kebutuhan
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# Run development server
+npm run dev
+\`\`\`
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Variable | Description | Example |
+|---|---|---|
+| VITE_API_URL | Base URL backend API | http://localhost:3000 |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Available Scripts
+
+\`\`\`bash
+npm run dev      # development server
+npm run build    # production build
+npm run preview  # preview production build
+npm run lint     # lint check
+\`\`\`
+
+## Project Structure
+
+\`\`\`
+src/
+├── api/          # axios instance + fungsi API call
+├── components/   # komponen reusable
+├── hooks/        # custom hooks
+├── layouts/      # AdminLayout, AuthLayout
+├── pages/        # halaman per domain
+├── router/       # konfigurasi routes
+├── stores/       # Zustand stores
+└── types/        # TypeScript types
+\`\`\`
+
+## Related Repositories
+
+- [foodmart-api](https://github.com/ricolutfiansyah/foodmart-api) — Backend REST API
+- foodmart-mobile — React Native app (coming soon)
