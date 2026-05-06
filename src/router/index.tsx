@@ -3,6 +3,8 @@ import AuthLayout from '@/layouts/AuthLayout';
 import AdminLayout from '@/layouts/AdminLayout';
 import LoginPage from '@/pages/auth/LoginPage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
+import CategoriesPage from '@/pages/categories/CategoriesPage';
+import FoodsPage from '@/pages/foods/FoodsPage';
 import { PublicRoute, PrivateRoute } from './guards';
 
 
@@ -38,8 +40,8 @@ export const router = createBrowserRouter([
         element: <DashboardPage />,
       },
       // Placeholder routes for navigation links
-      { path: 'categories', element: <div className="p-4">Categories Placeholder</div> },
-      { path: 'foods', element: <div className="p-4">Foods Placeholder</div> },
+      { path: 'categories', element: <CategoriesPage /> },
+      { path: 'foods', element: <FoodsPage /> },
       { path: 'orders', element: <div className="p-4">Orders Placeholder</div> },
     ],
   },

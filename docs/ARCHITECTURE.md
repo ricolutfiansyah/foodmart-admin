@@ -5,20 +5,26 @@
 \`\`\`
 src/
 ├── api/
-│   ├── axiosInstance.ts  # axios config + interceptor
-│   ├── auth.ts           # auth API calls
-│   ├── categories.ts     # categories API calls
-│   ├── foods.ts          # foods API calls
-│   └── orders.ts         # orders API calls
+│   ├── axiosInstance.ts
+│   ├── auth.ts
+│   ├── categories.ts
+│   ├── foods.ts
+│   └── orders.ts
 ├── components/
-│   └── ui/               # shadcn/ui (auto-generated, jangan diedit manual)
+│   ├── ui/               # shadcn/ui (auto-generated)
+│   └── shared/           # ✅ TAMBAH: reusable components
+│       ├── DataTable.tsx
+│       ├── FormDialog.tsx
+│       └── ConfirmDialog.tsx
 ├── hooks/
-│   └── useAuth.ts        # inisialisasi auth saat app load
+│   ├── useAuth.ts
+│   └── useApiError.ts    # ✅ TAMBAH: error handling hook
 ├── layouts/
-│   ├── AdminLayout.tsx   # sidebar + header + outlet
-│   └── AuthLayout.tsx    # layout halaman login
+│   ├── AdminLayout.tsx
+│   └── AuthLayout.tsx
 ├── lib/
-│   └── utils.ts          # shadcn utility (auto-generated)
+│   ├── utils.ts
+│   └── queryOptions.ts   # ✅ TAMBAH: TanStack Query factories
 ├── pages/
 │   ├── auth/
 │   ├── dashboard/
@@ -26,11 +32,15 @@ src/
 │   ├── foods/
 │   └── orders/
 ├── router/
-│   └── index.tsx         # route definitions + guards
+│   ├── index.tsx
+│   └── guards.tsx        # ✅ TAMBAH: dipisah dari index.tsx
 ├── stores/
-│   └── authStore.ts      # Zustand auth store
+│   └── authStore.ts
 ├── types/
-│   └── api.ts            # shared TypeScript types
+│   ├── api.ts            # shared response types
+│   ├── auth.ts           # ✅ TAMBAH: auth-specific
+│   ├── category.ts       # ✅ TAMBAH: category-specific
+│   └── food.ts           # ✅ TAMBAH: food-specific
 └── main.tsx
 \`\`\`
 
