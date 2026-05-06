@@ -8,10 +8,10 @@ import AppInitializer from './AppInitializer';
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
-  <QueryClientProvider client={queryClient}>
-    <AppInitializer />
-    <Toaster position="top-center" />
-  </QueryClientProvider>
-  // </StrictMode>
+  <StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <AppInitializer />
+      <Toaster position="top-center" />
+    </QueryClientProvider>
+  </StrictMode>
 );

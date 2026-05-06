@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/authStore';
 import { authApi } from '@/api/auth';
-import { Menu, X, LayoutDashboard, ListTree, Pizza, ShoppingCart, LogOut } from 'lucide-react';
+import { Menu, X, LayoutDashboard, ListTree, Utensils, ShoppingCart, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -25,8 +25,8 @@ export default function AdminLayout() {
 
   const navItems = [
     { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { path: '/categories', label: 'Categories', icon: ListTree },
-    { path: '/foods', label: 'Foods', icon: Pizza },
+    { path: '/categories', label: 'Kategori', icon: ListTree },
+    { path: '/foods', label: 'Makanan', icon: Utensils },
     { path: '/orders', label: 'Orders', icon: ShoppingCart },
   ];
 

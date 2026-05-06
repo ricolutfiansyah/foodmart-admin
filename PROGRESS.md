@@ -46,14 +46,38 @@ Dokumentasi progress per session pengerjaan project.
 ---
 
 ## Session 14 — Categories Management
-**Status:** ⏳ Planned
+**Status:** ✅ Done
 
-### Yang akan dikerjakan
-- [ ] CRUD Categories
-- [ ] Tabel data dengan TanStack Query
-- [ ] Form tambah & edit category (Dialog)
-- [ ] Konfirmasi hapus (AlertDialog)
-- [ ] Invalidate cache setelah mutasi
+### Yang dikerjakan
+- [x] CRUD Categories (Create, Read, Update, Delete)
+- [x] Tabel data dengan TanStack Query (`useCategories`, `useCategory`, `useCreateCategory`, `useUpdateCategory`, `useDeleteCategory`)
+- [x] Form tambah & edit category (`CategoryFormDialog` — shared component, RHF + Zod)
+- [x] Konfirmasi hapus (`DeleteCategoryDialog` — AlertDialog + Tooltip disable)
+- [x] Invalidate cache setelah mutasi (`queryClient.invalidateQueries`)
+- [x] Toast notifikasi success/error via Sonner
+- [x] Loading spinner di submit button (`isPending` + `Loader2`)
+- [x] Disable delete button kalau category punya produk (`_count.foods &gt; 0`)
+- [x] Route `/categories` protected by `PrivateRoute`
+- [x] Sidebar navigation item "Kategori"
+
+### Files Created
+- `src/types/category.ts`
+- `src/api/categories.ts`
+- `src/hooks/useCategories.ts`
+- `src/pages/categories/CategoriesPage.tsx`
+- `src/pages/categories/CategoryFormDialog.tsx`
+- `src/pages/categories/DeleteCategoryDialog.tsx`
+
+### Files Modified
+- `src/router/index.tsx` — add `/categories` route
+- `src/layouts/AdminLayout.tsx` — add sidebar nav item
+
+### Keputusan teknis
+- Error handling di hook (`onError` dengan toast), success handling di komponen (`onSuccess` dengan toast + UI state)
+- `form.reset()` di `useEffect` saat dialog buka, tidak perlu di `onSuccess`
+- `exact: false` TIDAK dipakai — pakai invalidate exact match untuk kontrol granular
+- Tooltip untuk disabled button menggunakan wrapper `span` dengan `tabIndex={0}`
+- `onOpenChange` dicegah saat `isPending` untuk UX yang lebih baik
 
 ---
 
@@ -88,3 +112,4 @@ Dokumentasi progress per session pengerjaan project.
 - [ ] Empty state
 - [ ] Proteksi route final
 - [ ] UX finishing
+- [ ] Optimistic update untuk delete (Categories & Foods)
