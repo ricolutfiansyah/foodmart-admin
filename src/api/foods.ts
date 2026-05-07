@@ -3,42 +3,52 @@ import type { ApiResponse } from '@/types/api';
 import type { Food, CreateFoodInput, UpdateFoodInput } from '@/types/food';
 
 export const foodsApi = {
-  getFoods: (params?: { categoryId?: string; search?: string }) =>
-    axiosInstance.get<ApiResponse<Food[]>>('/api/v1/foods', { params }).then(res => res.data),
-
-  getFood: (id: string) =>
-    axiosInstance.get<ApiResponse<Food>>(`/api/v1/foods/${id}`).then(res => res.data),
-
-  createFood: (data: CreateFoodInput) => {
-    const formData = new FormData();
-    formData.append('name', data.name);
-    if (data.description) formData.append('description', data.description);
-    formData.append('price', String(data.price));
-    formData.append('stock', String(data.stock));
-    formData.append('isAvailable', data.isAvailable ? 'true' : '');
-    formData.append('categoryId', data.categoryId);
-    if (data.image) formData.append('image', data.image);
-
-    return axiosInstance.post<ApiResponse<Food>>('/api/v1/foods', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }).then(res => res.data);
+  getFoods: async (params?: { categoryId?: string; search?: string }) => {
+    const { data } = await axiosInstance.get<ApiResponse<Food[]>>('/api/v1/foods', { params });
+    return data
   },
 
-  updateFood: (id: string, data: UpdateFoodInput) => {
-    const formData = new FormData();
-    if (data.name) formData.append('name', data.name);
-    if (data.description !== undefined) formData.append('description', data.description);
-    if (data.price !== undefined) formData.append('price', String(data.price));
-    if (data.stock !== undefined) formData.append('stock', String(data.stock));
-    if (data.isAvailable !== undefined) formData.append('isAvailable', data.isAvailable ? 'true' : '');
-    if (data.categoryId) formData.append('categoryId', data.categoryId);
-    if (data.image) formData.append('image', data.image);
-
-    return axiosInstance.patch<ApiResponse<Food>>(`/api/v1/foods/${id}`, formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    }).then(res => res.data);
+  getFood: async (id: string) => {
+    const { data } = await axiosInstance.get<ApiResponse<Food>>(`/api/v1/foods/${id}`);
+    return data
   },
 
-  deleteFood: (id: string) =>
-    axiosInstance.delete<ApiResponse<void>>(`/api/v1/foods/${id}`).then(res => res.data),
+  createFood: async (input: CreateFoodInput) => {
+    const formData = new FormData();
+    formData.append('name', input.name);
+    if (input.description) formData.append('description', input.description);
+    formData.append('price', String(input.price));
+    formData.append('stock', String(input.stock));
+    formData.append('isAvailable', input.isAvailable ? 'true' : '');
+    formData.append('categoryId', input.categoryId);
+    if (input.image) formData.append('image', input.image);
+
+    const { data } = await axiosInstance.post<ApiResponse<Food>>('/api/v1/foods', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+
+    return data;
+  },
+
+  updateFood: async (id: string, input: UpdateFoodInput) => {
+    const formData = new FormData();
+    if (input.name) formData.append('name', input.name);
+    if (input.description !== undefined) formData.append('description', input.description);
+    if (input.price !== undefined) formData.append('price', String(input.price));
+    if (input.stock !== undefined) formData.append('stock', String(input.stock));
+    if (input.isAvailable !== undefined) formData.append('isAvailable', input.isAvailable ? 'true' : '');
+    if (input.categoryId) formData.append('categoryId', input.categoryId);
+    if (input.image) formData.append('image', input.image);
+
+    const { data } = await axiosInstance.patch<ApiResponse<Food>>(`/api/v1/foods/${id}`, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+
+    return data;
+  },
+
+  deleteFood: async (id: string) => {
+    const { data } = await axiosInstance.delete<ApiResponse<void>>(`/api/v1/foods/${id}`)
+    return data;
+  }
 };

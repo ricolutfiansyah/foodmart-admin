@@ -56,7 +56,7 @@ export const useUpdateFood = () => {
       const previousFood = previousFoods?.data?.find((f) => f.id === id);
 
 
-      queryClient.setQueryData<ApiResponse<Food[]>>(['foods'], (oldData) => {
+      queryClient.setQueriesData<ApiResponse<Food[]>>({ queryKey: ['foods'] }, (oldData) => {
         if (!oldData.data) return oldData;
         return {
           ...oldData,
@@ -70,7 +70,7 @@ export const useUpdateFood = () => {
     },
     onError: (error: ApiAxiosError, _, context) => {
       if (context?.previousFood) {
-        queryClient.setQueryData<ApiResponse<Food[]>>(['foods'], (oldData) => {
+        queryClient.setQueriesData<ApiResponse<Food[]>>({ queryKey: ['foods'] }, (oldData) => {
           if (!oldData.data) return oldData;
           return {
             ...oldData,

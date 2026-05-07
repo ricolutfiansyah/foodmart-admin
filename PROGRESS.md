@@ -1,3 +1,4 @@
+
 # Progress FoodMart Admin
 
 Dokumentasi progress per session pengerjaan project.
@@ -56,7 +57,7 @@ Dokumentasi progress per session pengerjaan project.
 - [x] Invalidate cache setelah mutasi (`queryClient.invalidateQueries`)
 - [x] Toast notifikasi success/error via Sonner
 - [x] Loading spinner di submit button (`isPending` + `Loader2`)
-- [x] Disable delete button kalau category punya produk (`_count.foods &gt; 0`)
+- [x] Disable delete button kalau category punya produk (`_count.foods > 0`)
 - [x] Route `/categories` protected by `PrivateRoute`
 - [x] Sidebar navigation item "Kategori"
 
@@ -82,13 +83,38 @@ Dokumentasi progress per session pengerjaan project.
 ---
 
 ## Session 15 — Foods Management
-**Status:** ⏳ Planned
+**Status:** ✅ Done
 
-### Yang akan dikerjakan
-- [ ] CRUD Foods
-- [ ] Upload gambar ke Supabase Storage via API
-- [ ] Filter by category
-- [ ] Toggle isAvailable
+### Yang dikerjakan
+- [x] CRUD Foods (Create, Read, Update, Delete)
+- [x] Upload gambar ke Supabase Storage via API (multipart/form-data)
+- [x] Filter by category (dropdown)
+- [x] Search by name (debounce)
+- [x] Toggle isAvailable (inline switch)
+- [x] Form validation dengan field-specific error (Zod + RHF)
+- [x] Cache invalidation setelah mutasi
+- [x] Toast notifikasi success/error via Sonner
+- [x] Loading spinner di submit button
+- [x] Route `/foods` protected by `PrivateRoute`
+- [x] Sidebar navigation item "Makanan"
+
+### Files Created
+- `src/types/food.ts`
+- `src/api/foods.ts`
+- `src/hooks/useFoods.ts`
+- `src/pages/foods/FoodsPage.tsx`
+- `src/pages/foods/FoodFormDialog.tsx`
+- `src/pages/foods/DeleteFoodDialog.tsx`
+
+### Files Modified
+- `src/router/index.tsx` — add `/foods` route
+- `src/layouts/AdminLayout.tsx` — add sidebar nav item "Makanan"
+
+### Keputusan teknis
+- Upload gambar via `multipart/form-data` dengan field name `image`
+- Toggle isAvailable pakai trik `data.isAvailable ? 'true' : ''` karena `z.coerce.boolean()` treats `"false"` string as truthy
+- Error handling: hook untuk global toast, komponen untuk field-specific errors
+- Cache invalidation dengan prefix match `['foods']`
 
 ---
 
