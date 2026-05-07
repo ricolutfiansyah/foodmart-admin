@@ -141,7 +141,7 @@ export default function OrderDetailDialog({ orderId, open, onOpenChange }: Order
   return (
     <TooltipProvider>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="w-[calc(100vw-2rem)] sm:w-[calc(100vw-4rem)] md:w-[calc(100vw-8rem)] lg:max-w-6xl max-h-[90vh] overflow-y-auto">
+        <DialogContent aria-describedby={undefined} className="w-[calc(100vw-2rem)] sm:w-[calc(100vw-4rem)] md:w-[calc(100vw-8rem)] lg:max-w-6xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className='flex items-center gap-2'>
               Detail Pesanan

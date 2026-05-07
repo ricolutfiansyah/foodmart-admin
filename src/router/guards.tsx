@@ -6,10 +6,12 @@ export const PublicRoute = ({ children }: { children: React.ReactNode }) => {
     return isAuthenticated ? <Navigate to="/dashboard" replace /> : <>{children}</>;
 };
 
-export const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+export const PrivateRoute = ({ children, allowedRoles = ['ADMIN'] }: { children: React.ReactNode; allowedRoles?: string[] }) => {
     const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
     const user = useAuthStore((state) => state.user);
+
     if (!isAuthenticated) return <Navigate to="/login" replace />;
-    if (user?.role !== 'ADMIN') return <Navigate to="/unauthorized" replace />;
+    if (!allowedRoles.includes(user?.role)) return <Navigate to="/unauthorized" replace />;
+
     return <>{children}</>;
 };

@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <PrivateRoute>
+      <PrivateRoute allowedRoles={['ADMIN']}>
         <AdminLayout />
       </PrivateRoute>
     ),
@@ -40,7 +40,6 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <DashboardPage />,
       },
-      // Placeholder routes for navigation links
       { path: 'categories', element: <CategoriesPage /> },
       { path: 'foods', element: <FoodsPage /> },
       { path: 'orders', element: <OrdersPage /> },

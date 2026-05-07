@@ -77,15 +77,9 @@ axiosInstance.interceptors.response.use(
         );
 
         const newAccessToken = data.data.accessToken;
-
         if (!newAccessToken) throw new Error('No access token in response');
 
-        const user = useAuthStore.getState().user;
-        if (user) {
-          useAuthStore.getState().setAuth(newAccessToken, user);
-        } else {
-          useAuthStore.setState({ accessToken: newAccessToken });
-        }
+        useAuthStore.setState({ accessToken: newAccessToken });
 
         processQueue(null, newAccessToken);
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;

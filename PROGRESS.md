@@ -119,12 +119,28 @@ Dokumentasi progress per session pengerjaan project.
 ---
 
 ## Session 16 — Orders Management
-**Status:** ⏳ Planned
+**Status:** ✅ Done
 
-### Yang akan dikerjakan
-- [ ] List semua orders (admin)
-- [ ] Detail order
-- [ ] Update status order (PENDING → PROCESSING → COMPLETED / CANCELLED)
+### Yang dikerjakan
+- [x] List semua orders (admin)
+- [x] Detail order
+- [x] Update status order (PENDING → PROCESSING → COMPLETED / CANCELLED)
+
+### Files Created
+- `src/types/order.ts`
+- `src/api/orders.ts`
+- `src/hooks/useOrders.ts`
+- `src/pages/orders/OrdersPage.tsx`
+- `src/pages/orders/OrderDetailPage.tsx`
+
+### Files Modified
+- `src/router/index.tsx` — add `/orders` and `/orders/:id` routes
+- `src/layouts/AdminLayout.tsx` — add sidebar nav item "Pesanan"
+
+### Keputusan teknis
+- Status order menggunakan enum dari backend (PENDING, PROCESSING, COMPLETED, CANCELLED)
+- Update status menggunakan API PATCH dengan field `status`
+- Cache invalidation dengan prefix match `['orders']`
 
 ---
 

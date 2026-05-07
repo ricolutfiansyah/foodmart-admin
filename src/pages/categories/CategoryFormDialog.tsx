@@ -99,7 +99,7 @@ export default function CategoryFormDialog({
       open={open}
       onOpenChange={(open) => { if (!isPending) onOpenChange(open) }}
     >
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent aria-describedby={undefined} className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
             {mode === 'create' ? 'Tambah Kategori' : 'Edit Kategori'}
