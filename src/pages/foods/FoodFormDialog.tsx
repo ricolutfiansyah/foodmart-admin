@@ -260,6 +260,7 @@ export default function FoodFormDialog({
                         disabled={isPending}
                         {...field}
                         onChange={handleInputNumber(field.onChange)}
+                        onFocus={(e) => e.target.select()}
                       />
                     </FormControl>
                     <FormMessage />
@@ -300,6 +301,7 @@ export default function FoodFormDialog({
                   </div>
                   <FormControl>
                     <Switch
+                      className='cursor-pointer'
                       checked={field.value}
                       onCheckedChange={field.onChange}
                       disabled={isPending}
@@ -321,7 +323,7 @@ export default function FoodFormDialog({
                       className="absolute top-1 right-1 bg-white/80 rounded-full p-1 hover:bg-white transition-colors"
                       disabled={isPending}
                     >
-                      <X className="h-4 w-4 text-red-500" />
+                      <X className="h-4 w-4 text-red-500 cursor-pointer" />
                     </button>
                   </div>
                 ) : (
@@ -348,6 +350,7 @@ export default function FoodFormDialog({
 
             <DialogFooter>
               <Button
+                className='cursor-pointer'
                 type="button"
                 variant="outline"
                 onClick={() => handleOpenChange(false)}
@@ -355,7 +358,7 @@ export default function FoodFormDialog({
               >
                 Batal
               </Button>
-              <Button type="submit" disabled={isPending}>
+              <Button className='cursor-pointer' type="submit" disabled={isPending}>
                 {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 Simpan
               </Button>

@@ -15,7 +15,6 @@ export const useFoods = (params?: { categoryId?: string; search?: string }) => {
     queryKey: ['foods', params],
     queryFn: () => foodsApi.getFoods(params),
     staleTime: 2 * 60 * 1000,
-    gcTime: 5 * 60 * 1000
   });
 };
 
@@ -24,6 +23,7 @@ export const useFood = (id: string) => {
     queryKey: ['foods', id],
     queryFn: () => foodsApi.getFood(id),
     enabled: !!id,
+    staleTime: 1 * 60 * 1000,
   });
 };
 

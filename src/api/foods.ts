@@ -2,14 +2,23 @@ import { axiosInstance } from './axiosInstance';
 import type { ApiResponse } from '@/types/api';
 import type { Food, CreateFoodInput, UpdateFoodInput } from '@/types/food';
 
+const FOODS_ENDPOINTS = {
+  GET_ALL: '/api/v1/foods',
+  GET_BY_ID: '/api/v1/foods/:id',
+  CREATE: '/api/v1/foods',
+  UPDATE: '/api/v1/foods/:id',
+  DELETE: '/api/v1/foods/:id',
+}
+
 export const foodsApi = {
   getFoods: async (params?: { categoryId?: string; search?: string }) => {
-    const { data } = await axiosInstance.get<ApiResponse<Food[]>>('/api/v1/foods', { params });
+    const { data } = await axiosInstance.get<ApiResponse<Food[]>>(FOODS_ENDPOINTS.GET_ALL, { params });
     return data
   },
 
   getFood: async (id: string) => {
-    const { data } = await axiosInstance.get<ApiResponse<Food>>(`/api/v1/foods/${id}`);
+    const endpoint = FOODS_ENDPOINTS.GET_BY_ID.replace(":id", id);
+    const { data } = await axiosInstance.get<ApiResponse<Food>>(endpoint);
     return data
   },
 
@@ -23,7 +32,7 @@ export const foodsApi = {
     formData.append('categoryId', input.categoryId);
     if (input.image) formData.append('image', input.image);
 
-    const { data } = await axiosInstance.post<ApiResponse<Food>>('/api/v1/foods', formData, {
+    const { data } = await axiosInstance.post<ApiResponse<Food>>(FOODS_ENDPOINTS.CREATE, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
@@ -40,7 +49,8 @@ export const foodsApi = {
     if (input.categoryId) formData.append('categoryId', input.categoryId);
     if (input.image) formData.append('image', input.image);
 
-    const { data } = await axiosInstance.patch<ApiResponse<Food>>(`/api/v1/foods/${id}`, formData, {
+    const endpoint = FOODS_ENDPOINTS.UPDATE.replace(":id", id);
+    const { data } = await axiosInstance.patch<ApiResponse<Food>>(endpoint, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
 
@@ -48,7 +58,8 @@ export const foodsApi = {
   },
 
   deleteFood: async (id: string) => {
-    const { data } = await axiosInstance.delete<ApiResponse<void>>(`/api/v1/foods/${id}`)
+    const endpoint = FOODS_ENDPOINTS.DELETE.replace(":id", id);
+    const { data } = await axiosInstance.delete<ApiResponse<void>>(endpoint)
     return data;
   }
 };

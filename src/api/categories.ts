@@ -16,8 +16,8 @@ export const categoriesApi = {
     return data;
   },
   getCategoryById: async (id: string) => {
-    const url = CATEGORIES_ENDPOINTS.GET_BY_ID.replace(':id', id);
-    const { data } = await axiosInstance.get<ApiResponse<Category>>(url);
+    const endpoint = CATEGORIES_ENDPOINTS.GET_BY_ID.replace(":id", id);
+    const { data } = await axiosInstance.get<ApiResponse<Category>>(endpoint);
     return data;
   },
   createCategory: async (payload: CreateCategoryInput) => {
@@ -25,13 +25,13 @@ export const categoriesApi = {
     return data;
   },
   updateCategory: async (id: string, payload: UpdateCategoryInput) => {
-    const url = CATEGORIES_ENDPOINTS.UPDATE.replace(':id', id);
-    const { data } = await axiosInstance.patch<ApiResponse<Category>>(url, payload);
+    const endpoint = CATEGORIES_ENDPOINTS.UPDATE.replace(':id', id);
+    const { data } = await axiosInstance.patch<ApiResponse<Category>>(endpoint, payload);
     return data;
   },
   deleteCategory: async (id: string) => {
-    const url = CATEGORIES_ENDPOINTS.DELETE.replace(':id', id);
-    const { data } = await axiosInstance.delete<ApiResponse<void>>(url);
+    const endpoint = CATEGORIES_ENDPOINTS.DELETE.replace(':id', id);
+    const { data } = await axiosInstance.delete<ApiResponse<void>>(endpoint);
     return data;
   }
 };

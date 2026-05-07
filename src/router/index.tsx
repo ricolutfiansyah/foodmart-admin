@@ -5,6 +5,7 @@ import LoginPage from '@/pages/auth/LoginPage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
 import CategoriesPage from '@/pages/categories/CategoriesPage';
 import FoodsPage from '@/pages/foods/FoodsPage';
+import OrdersPage from '@/pages/orders/OrdersPage';
 import { PublicRoute, PrivateRoute } from './guards';
 
 
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
       // Placeholder routes for navigation links
       { path: 'categories', element: <CategoriesPage /> },
       { path: 'foods', element: <FoodsPage /> },
-      { path: 'orders', element: <div className="p-4">Orders Placeholder</div> },
+      { path: 'orders', element: <OrdersPage /> },
     ],
   },
   {

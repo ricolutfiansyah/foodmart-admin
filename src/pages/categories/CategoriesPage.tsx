@@ -16,6 +16,7 @@ import {
 import CategoryFormDialog from './CategoryFormDialog';
 import DeleteCategoryDialog from './DeleteCategoryDialog';
 import type { AxiosError } from 'axios';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function CategoriesPage() {
   const { data: categories, isLoading, isError, error, refetch } = useCategories();
@@ -68,11 +69,14 @@ export default function CategoriesPage() {
           </TableHeader>
           <TableBody>
             {isLoading ? (
-              <TableRow>
-                <TableCell colSpan={4} className="h-24 text-center">
-                  Memuat data...
-                </TableCell>
-              </TableRow>
+              Array.from({ length: 5 }).map((_, i) => (
+                <TableRow key={i}>
+                  <TableCell><Skeleton className="h-4 w-10" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-10" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-10" /></TableCell>
+                  <TableCell><Skeleton className="h-4 w-10" /></TableCell>
+                </TableRow>
+              ))
             ) : isError ? (
               <TableRow>
                 <TableCell colSpan={4} className="h-24 text-center">
