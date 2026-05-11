@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(
 );
 
 interface QueueItem {
-  resolve: (value?: unknown) => void;
+  resolve: (value?: string | null) => void;
   reject: (reason?: unknown) => void;
 }
 
@@ -79,13 +79,14 @@ axiosInstance.interceptors.response.use(
         const newAccessToken = data.data.accessToken;
         if (!newAccessToken) throw new Error('No access token in response');
 
-        useAuthStore.setState({ accessToken: newAccessToken });
+        useAuthStore.getState().setAccessToken(newAccessToken);
 
         processQueue(null, newAccessToken);
         originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
         return axiosInstance(originalRequest);
       } catch (err) {
         processQueue(err, null);
+        useAuthStore.getState().logout();
         return Promise.reject(err);
       } finally {
         isRefreshing = false;
